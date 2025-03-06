@@ -1,11 +1,9 @@
 name: VM Deploy NodeBB
 on: [push]
 
-
 jobs:
   lint-and-test:
-      uses:
-        ./.github/workflows/test.yaml
+    uses: ./.github/workflows/test.yaml
   
   deploy:
     runs-on: ubuntu-latest
@@ -19,12 +17,12 @@ jobs:
           node-version: '20.x'
       
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1.2.1
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             git pull origin main
-            # npm ci --production
+            npm install --production
             sudo systemctl restart nodebb
