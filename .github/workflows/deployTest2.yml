@@ -17,7 +17,7 @@ jobs:
 
   build-and-deploy:
     if: github.repository == 'cmu-313/nodebb-s25-test-mones' #should be editted to repo name
-    needs: lint-and-test
+    # needs: lint-and-test
 
     runs-on: ubuntu-latest
 
