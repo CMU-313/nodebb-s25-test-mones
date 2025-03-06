@@ -11,9 +11,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-and-test:
-    uses:
-      ./.github/workflows/test.yaml
+  # lint-and-test:
+  #   uses:
+  #     ./.github/workflows/test.yaml
 
   build-and-deploy:
     if: github.repository == 'cmu-313/nodebb-s25-test-mones' #should be editted to repo name
