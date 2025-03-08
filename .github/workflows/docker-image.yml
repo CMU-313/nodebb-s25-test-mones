@@ -1,4 +1,4 @@
-name: Build Test 2
+name: VM Deploy NodeBB
 
 on:
   push:
@@ -16,8 +16,8 @@ jobs:
       ./.github/workflows/test.yaml
 
   build-and-deploy:
-    if: github.repository == 'cmu-313/nodebb-s25-test-mones' #should be editted to repo name
-    # needs: lint-and-test
+    if: github.repository == 'cmu-313/nodebb-s25-test-mones' #should be edited to repo name
+    needs: lint-and-test
 
     runs-on: ubuntu-latest
 
@@ -40,12 +40,3 @@ jobs:
             git pull origin main
             docker-compose down
             docker-compose --profile redis up --build -d
-      # npm install --production
-      # - name: SSH + Compose
-      #   run: |
-      #     ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '
-      #       cd nodebb-s25-test-mones && \
-      #       git pull origin main && \
-      #       docker compose down && \
-      #       docker compose --profile redis up --build -d
-      #     '
