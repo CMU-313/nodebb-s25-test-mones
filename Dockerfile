@@ -49,8 +49,9 @@ WORKDIR /usr/src/app/
 RUN corepack enable \
     && groupadd --gid ${GID} ${USER} \
     && useradd --uid ${UID} --gid ${GID} --home-dir /usr/src/app/ --shell /bin/bash ${USER} \
-    && mkdir -p /usr/src/app/logs/ /docker \
-    && chown -R ${USER}:${USER} /usr/src/app/ /docker
+    && mkdir -p /usr/src/app/logs/ /opt/config/ \
+    && chown -R ${USER}:${USER} /usr/src/app/ /opt/config/ \
+    && chmod -R 775 /usr/src/app/ /opt/config/
 
 COPY --from=build --chown=${USER}:${USER} /usr/src/app/ /usr/src/app/install/docker/setup.json /usr/src/app/
 COPY --from=build --chown=${USER}:${USER} /usr/bin/tini /usr/src/app/install/docker/entrypoint.sh /usr/local/bin/
@@ -65,7 +66,7 @@ USER ${USER}
 
 EXPOSE 4567
 
-VOLUME ["/usr/src/app/node_modules", "/usr/src/app/build", "/usr/src/app/public/uploads", "/docker"]
+VOLUME ["/usr/src/app/node_modules", "/usr/src/app/build", "/usr/src/app/public/uploads", "/opt/config/"]
 
 # Utilising tini as our init system within the Docker container for graceful start-up and termination.
 # Tini serves as an uncomplicated init system, adept at managing the reaping of zombie processes and forwarding signals.
