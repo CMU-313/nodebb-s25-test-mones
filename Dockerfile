@@ -11,6 +11,9 @@ WORKDIR /usr/src/app/
 
 COPY . /usr/src/app/
 
+#added may be able to be deleted
+RUN mkdir -p /opt/config 
+
 # Install corepack to allow usage of other package managers
 RUN corepack enable
 
