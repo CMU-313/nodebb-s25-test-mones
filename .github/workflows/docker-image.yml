@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.ADMIN_PASSWORD }}
           script: | 
-            cd ${{ secrets.Repo_Name }}
+            cd ${{ secrets.REPO_NAME }}
             git pull origin main
             docker-compose down
             docker-compose --profile redis up --build -d
