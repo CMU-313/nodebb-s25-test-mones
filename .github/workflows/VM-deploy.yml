@@ -5,7 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-    
+
+permissions: read-all|write-all
+
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
@@ -16,7 +18,7 @@ jobs:
       ./.github/workflows/test.yaml
 
   build-and-deploy:
-    if: github.repository == 'cmu-313/nodebb-s25-test-mones' #should be edited to repo name
+    if: github.repository == 'cmu-313/${{ secrets.REPO_NAME }}' #should be edited to repo name
     needs: lint-and-test
 
     runs-on: ubuntu-latest
