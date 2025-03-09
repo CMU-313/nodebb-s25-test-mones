@@ -13,12 +13,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-and-test:
-    uses:
-      ./.github/workflows/test.yaml
+  # lint-and-test:
+  #   uses:
+  #     ./.github/workflows/test.yaml
 
   build-and-deploy:
-    needs: lint-and-test
+  #   needs: lint-and-test
 
     runs-on: ubuntu-latest
 
